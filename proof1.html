@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function verificarNumeroWhatsApp(numero) {
+    // Construye el enlace de WhatsApp con el número
+    var enlaceWhatsApp = "https://wa.me/" + numero;
+
+    // Intenta abrir el enlace
+    window.open(enlaceWhatsApp, "_blank");
+
+    // Espera un tiempo antes de verificar si se abrió la ventana
+    setTimeout(function() {
+        // Si la ventana está cerrada, el número no está registrado en WhatsApp
+        if (window.closed) {
+            console.log("El número " + numero + " no está registrado en WhatsApp.");
+        } else {
+            console.log("El número " + numero + " está registrado en WhatsApp.");
+        }
+    }, 5000); // Espera 5 segundos antes de verificar
+}
+
+// Ejemplo de uso
+verificarNumeroWhatsApp("1234567890");
+
+    </script>
+</body>
+</html>

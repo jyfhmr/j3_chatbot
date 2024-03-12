@@ -1,0 +1,24 @@
+{
+  "name": "whatsapp-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "revisar": "node revisar_numeros.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hurdlegroup/robotjs": "^0.11.4",
+    "@jitsi/robotjs": "^0.6.13",
+    "@todesktop/robotjs-prebuild": "^0.6.18",
+    "axios": "^1.6.7",
+    "biga.ahk": "^0.57.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^22.3.0",
+    "sleep-promise": "^9.1.0"
+  }
+}
