@@ -8,6 +8,7 @@ const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 
 const result = [];
 
+let asdasd="a"
 
 
 data.forEach((row) => {
@@ -71,7 +72,7 @@ function enviarMensaje() {
 
   let numero = phones2[contador];
   let mensaje = "Hola esto es una prueba jajaja"
-
+  
   openWhatsAppApp(numero);
 
   delay(1500);
