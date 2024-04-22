@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba de Backend con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Prueba de Backend con jQuery</h2>
+
+    <p>Ingrese números de teléfono separados por coma (,):</p>
+
+    <p>
+      Esto se conecta con la base de datos y te retorna los números, sin los que
+      ya están en la base de datos, y elimina los que ya estén repetidos dentro
+      del array
+    </p>
+
+    <input
+      type="text"
+      id="phoneNumbers"
+      placeholder="Ingrese números separados por coma"
+    />
+    <br /><br />
+    <button id="submitNumbers">Enviar Números</button>
+
+    <div id="result"></div>
+
+    <script>
+      const result = document.getElementById("result");
+
+      $(document).ready(function () {
+        $("#submitNumbers").click(function () {
+          var numbers = $("#phoneNumbers").val().split(",");
+          $.ajax({
+            url: "https://josehmwebdev.com/api/v1/post/debug.php",
+            type: "POST",
+            data: { phoneNumbers: numbers },
+            dataType: "json",
+            success: function (response) {
+              alert("Completado");
+              console.log("array depurado:", response);
+              console.log(typeof response);
+              result.innerHTML = "";
+
+              // Convertir el objeto en un array de valores
+              let array = Object.values(response);
+
+              // Convertir el array en un conjunto para eliminar elementos duplicados
+              let uniqueSet = new Set(array);
+
+              // Convertir nuevamente el conjunto en un array
+              let uniqueArray = [...uniqueSet];
+
+              for (let i = 0; i < uniqueArray.length; i++) {
+                result.innerHTML += `<span>${uniqueArray[i]},</span>`;
+              }
+
+              if (uniqueArray.length == 0) {
+                result.innerHTML += `<span>Todos los números que insertaste ya estaban en la DB</span>`;
+              }
+
+              result.innerHTML += `<div>La cantidad de números a los que le puedes escribir es ${uniqueArray.length}</div>`;
+
+              console.log("Largo del array", uniqueArray.length);
+            },
+            error: function (xhr, status, error) {
+              $("#result").html("Error: " + error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
