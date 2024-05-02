@@ -1,7 +1,10 @@
 // Move the mouse across the screen as a sine wave.
 var robot = require("@todesktop/robotjs-prebuild");
 const { exec } = require("child_process");
-let asdasd="a"
+const copyPaste = require('copy-paste');
+
+// Texto que quieres copiar al portapapeles
+
 
 function delay(ms) {
   const date = Date.now();
@@ -34,26 +37,31 @@ function openWhatsAppApp(phone) {
 }
 
 let phones2 = [
-  584123091835, 584169372345, 584245036249, 584122103424,584123091835, 584169372345, 584245036249, 584122103424,584123091835, 584169372345, 584245036249, 584122103424,584123091835, 584169372345, 584245036249, 584122103424,584123091835, 584169372345, 584245036249, 584122103424,
+ 
 ];
+
+let phones3 = [584123091835, 584122103424,584123091835, 584122103424,584123091835, 584122103424,584123091835, 584122103424,584123091835, 584122103424,584123091835, 584122103424,]
 
 let contador = 0;
 
+const textoACopiar = "Buenas tardes!, conseguí este contacto en Google Maps, Me presento soy José Hernández y me dedico al desarrollo de software ,Le escribo para poner a disposición mis servicios como programador, me especializo en crear tanto aplicaciones como sitios web, si necesita un programador o el desarrollo de alguna aplicación estaré encantado de trabajar en conjunto, Si quiere conocer más de mi trayectoria profesional puedo enviarle mi portafolio de proyectos";
+
+// Copiar el texto al portapapeles
+copyPaste.copy(textoACopiar, function(){console.log("Texto copiado al portapapeles:", textoACopiar);});
+
 function enviarMensaje() {
-  if (contador >= phones2.length) {
+  if (contador >= phones3.length) {
     console.log("Todos los mensajes enviados.");
     return;
   }
 
-  let numero = phones2[contador];
-  let mensaje = "Hola esto es una prueba jajaja"
-  
+  let numero = phones3[contador];
+
   openWhatsAppApp(numero);
+  delay(500);
 
-  delay(1500);
-
-  robot.typeStringDelayed(mensaje,3000)
-
+  robot.keyTap("v", ["control"]);
+  delay(500);
   robot.keyTap("enter");
   contador++;
   enviarMensaje();
